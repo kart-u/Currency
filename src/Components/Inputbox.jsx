@@ -1,13 +1,11 @@
 function Inputbox({
     label,
-    amount=0,
     onAmountChange,
     onCurrencyChange,
     currencyOptions = [],
-    selectCurrency = "usd",
-    amountDisable = false,
-    currencyDisable = false,
+    selectCurrency = "AGLD",
     className = "",
+    amount="0"
 }
 ){
     return(
@@ -20,9 +18,8 @@ function Inputbox({
                 className="outline-none w-full bg-transparent py-1.5"
                 type="number"
                 placeholder="Amount"
-                disabled={amountDisable}
                 value={amount}
-                onChange={(e) => (onAmountChange && onAmountChange(Number(e.target.value)))}
+                onChange={(e) => (onAmountChange && onAmountChange(e.target.value))}
             />
         </div>
         <div className="w-1/2 flex flex-wrap justify-end text-right">
@@ -31,16 +28,12 @@ function Inputbox({
                 className="rounded-lg px-1 py-1 bg-gray-100 cursor-pointer outline-none"
                 value={selectCurrency}
                 onChange={(e) => (onCurrencyChange && onCurrencyChange(e.target.value))}
-                disabled={currencyDisable}
             >
-                <div style={{height:"10px"}}>
-                    {currencyOptions.map((currency) => (
-                        <option key={currency} value={currency}>
-                        {currency}
-                        </option>
-                    ))}
-                </div>
-            
+            {currencyOptions.map((currency) => (
+                <option key={currency} value={currency}>
+                {currency}
+                </option>
+            ))}
             </select>
         </div>
     </div>
